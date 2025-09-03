@@ -1,0 +1,158 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+version: 2
+final_space: true
+console_title_template: "{{ .Shell }} in {{ .Folder }}"
+blocks:
+- type: prompt
+  alignment: left
+  segments:
+  - type: os
+    style: plain
+    template: "{{.Icon}} "
+    foreground: p:flamigo
+  - type: root
+    style: plain
+    template: "\uf292 "
+    foreground: p:blue
+  - type: session
+    style: plain
+    template: "{{ if .SSHSession }}\ueba9 {{ end }}{{ .UserName }} "
+    foreground: p:blue
+  - type: path
+    style: plain
+    template: "{{ path .Path .Location }} "
+    properties:
+      folder_icon: ....
+      home_icon: "~"
+      style: agnoster_short
+    foreground: p:pink
+  - type: git
+    style: plain
+    template: "{{ if .UpstreamURL }}{{ url .UpstreamIcon .UpstreamURL }} {{ end }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }} "
+    properties:
+      branch_icon: "\ue725 "
+      branch_max_length: 25
+      cherry_pick_icon: "\ue29b "
+      commit_icon: "\uf417 "
+      fetch_status: true
+      fetch_upstream_icon: true
+      merge_icon: "\ue727 "
+      no_commits_icon: "\uf0c3 "
+      rebase_icon: "\ue728 "
+      revert_icon: "\uf0e2 "
+      tag_icon: "\uf412 "
+    foreground: p:mauve
+- type: prompt
+  alignment: right
+  segments:
+  - type: node
+    style: plain
+    template: "  \uf2ee {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }}"
+    properties:
+      fetch_package_manager: true
+      npm_icon: " <p:green>\ue5fa</>"
+      yarn_icon: " <p:green>\ue6a7</>"
+    foreground: p:green
+  - type: python
+    style: plain
+    template: "  \ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}"
+    foreground: p:yellow
+  - type: java
+    style: plain
+    template: "  \ue738 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}"
+    foreground: p:magenta
+  - type: go
+    style: diamond
+    template: "  \ue627 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}"
+    foreground: p:sky
+  - type: rust
+    style: plain
+    template: "  \ue7a8 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}"
+    foreground: p:maroon
+  - type: docker
+    style: plain
+    template: "  \uf308 {{.Context}}"
+    foreground: p:sapphire
+  - type: kubectl
+    style: plain
+    template: "  \ue7b2 {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}}"
+    foreground: p:blue
+  - type: time
+    style: plain
+    template: "  \ue641 {{ .CurrentDate | date \"3:04:05 PM\"}}"
+    foreground: p:lavender
+  overflow: hide
+- type: prompt
+  alignment: left
+  segments:
+  - type: text
+    style: plain
+    template: "\uf105 "
+    properties:
+      always_enabled: true
+    foreground: p:subtext1
+  newline: true
+tooltips:
+- type: aws
+  tips:
+  - aws
+  style: plain
+  template: "  \ue7ad {{ .Profile }}{{ if .Region }}@{{ .Region }}{{ end }}"
+  foreground: p:peach
+- type: az
+  tips:
+  - az
+  style: plain
+  template: "  \uebd8 {{ .Name }}"
+  foreground: p:peach
+- type: gcp
+  tips:
+  - gcp
+  style: plain
+  template: "  \ue7b2 {{ .Project }}"
+  foreground: p:peach
+- type: pulumi
+  tips:
+  - pulumi
+  style: plain
+  template: "  \ue0cf {{ .Stack }}{{if .User }} :: {{ .User }}@{{ end }}{{ if .URL }}{{ .URL }}{{ end }}"
+  foreground: p:sapphire
+secondary_prompt:
+  template: "\uf105 "
+  foreground: p:closer
+palette:
+  base: "#1e1e2e"
+  black: "#45475A"
+  blue: "#89b4fa"
+  closer: "#ACB0BE"
+  crust: "#11111b"
+  cyan: "#94E2D5"
+  flamigo: "#f2cdcd"
+  green: "#A6E3A1"
+  lavender: "#b4befe"
+  magenta: "#F5C2E7"
+  mantle: "#181825"
+  maroon: "#eba0ac"
+  mauve: "#cba6f7"
+  orange: "#fab387"
+  os: "#ACB0BE"
+  overlay0: "#6c7086"
+  overlay1: "#7f849c"
+  overlay2: "#9399b2"
+  peach: "#fab387"
+  pink: "#f5c2e7"
+  purple: "#cba6f7"
+  red: "#F38BA8"
+  rosewater: "#f5e0dc"
+  sapphire: "#74c7ec"
+  sky: "#89dceb"
+  subtext0: "#a6adc8"
+  subtext1: "#bac2de"
+  surface0: "#313244"
+  surface1: "#45475a"
+  surface2: "#585b70"
+  teal: "#94e2d5"
+  text: "#cdd6f4"
+  white: "#BAC2DE"
+  yellow: "#F9E2AF"
